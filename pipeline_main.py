@@ -5,6 +5,7 @@ from src.tools.ProcessLogger import ProcessLogger
 from src.task.LoadingTask import LoadingTask
 from src.task.NormalisationTask import NormalisationTask
 from src.task.ExtractTask import ExtractTask
+from src.task.ExportTask import ExportTask
 
 if __name__ == '__main__':
     with open("./config/config.yaml") as conf_file:
@@ -16,6 +17,7 @@ if __name__ == '__main__':
         "load": LoadingTask(conf),
         "normalisation": NormalisationTask(conf),
         "extract": ExtractTask(conf),
+        "export": ExportTask(conf),
     }
 
     logger.info("Start of pipeline")
