@@ -78,7 +78,8 @@ Le dossier test contient un script de test executable depuis la racine du projet
     SELECT T.date, SUM(T.prod_price * T.prod_qty) AS ventes
     FROM TRANSACTION AS T
     WHERE TO_DATE(T.date, 'DD/MON/YYYY') BETWEEN TO_DATE('01/01/2019', 'DD/MON/YYYY') AND TO_DATE('31/12/2019', 'DD/MON/YYYY') 
-    GROUP BY T.date;
+    GROUP BY T.date
+    ORDER BY T.date;
 ```
 
 
@@ -90,8 +91,8 @@ Le dossier test contient un script de test executable depuis la racine du projet
 `Solution:`
 ``` SQL
     SELECT T.client_id,
-        SUM(CASE WHEN PN.product_type = "MEUBLE" THEN T.prod_price * T.prop_id ) AS ventes_meuble,
-        SUM(CASE WHEN PN.product_type = "DECO" THEN T.prod_price * T.prop_id)AS ventes_deco
+        SUM(CASE WHEN PN.product_type = "MEUBLE" THEN T.prod_price * T.prod_qty ) AS ventes_meuble,
+        SUM(CASE WHEN PN.product_type = "DECO" THEN T.prod_price * T.prod_qty) AS ventes_deco
     FROM TRANSACTION AS T
     JOIN PRODUCT_NOMENCLATURE AS PN ON T.prop_id = PN.product_id
     WHERE TO_DATE(T.date, 'DD/MON/YYYY') BETWEEN TO_DATE('01/01/2019', 'DD/MON/YYYY') AND TO_DATE('31/12/2019', 'DD/MON/YYYY')
