@@ -61,4 +61,25 @@ class DataFrameHandler:
 
         DataFrameHandler.logger.info(f"DataFrame exported : {path}")
         return path
+    
+    @staticmethod
+    def to_date(dataframe: DataFrame, col: dict) -> Series:
+        """
+        Convert string date to date time.
+        :param dataframe: dataframe with date
+        :param col: column to convert to date datetime
+        :return:
+        """
+        return pd.to_datetime(dataframe[col["name"]], infer_datetime_format=True, utc=True, dayfirst=True)
+
+    @staticmethod
+    def correct_column_name(dataframe: DataFrame, col: dict) -> DataFrame:
+        """
+        Correct name of a column by another name set in setting file
+        :param dataframe: dataframe concerned by the name correction
+        :param col: column need to be corrected
+        :return: dataframe with corrected name
+        """
+        DataFrameHandler.logger.info(f"column {col['name']} name change to {col['correct_name']} ")
+        return dataframe.rename(columns={col["name"]: col["correct_name"]})
 

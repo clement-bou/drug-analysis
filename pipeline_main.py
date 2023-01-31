@@ -3,6 +3,7 @@ from logging import Logger
 
 from src.tools.ProcessLogger import ProcessLogger
 from src.task.LoadingTask import LoadingTask
+from src.task.NormalisationTask import NormalisationTask
 
 
 if __name__ == '__main__':
@@ -13,6 +14,7 @@ if __name__ == '__main__':
 
     pipeline: dict = {
         "load": LoadingTask(conf),
+        "normalisation": NormalisationTask(conf),
     }
 
     logger.info("Start of pipeline")
