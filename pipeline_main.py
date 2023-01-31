@@ -4,7 +4,7 @@ from logging import Logger
 from src.tools.ProcessLogger import ProcessLogger
 from src.task.LoadingTask import LoadingTask
 from src.task.NormalisationTask import NormalisationTask
-
+from src.task.ExtractTask import ExtractTask
 
 if __name__ == '__main__':
     with open("./config/config.yaml") as conf_file:
@@ -15,6 +15,7 @@ if __name__ == '__main__':
     pipeline: dict = {
         "load": LoadingTask(conf),
         "normalisation": NormalisationTask(conf),
+        "extract": ExtractTask(conf),
     }
 
     logger.info("Start of pipeline")
