@@ -1,0 +1,45 @@
+logger:
+  format: "(%(asctime)s) [%(name)s]: %(message)s"
+path:
+  test_dir: "/test/"
+  result_dir: "/data/result/"
+  data_dir: "/data/source/"
+  loaded_dir: "/data/loaded/"
+  normalised_dir: "/data/normalised/"
+result:
+  name : "drug_graph.json"
+data:
+  - source: "drugs"
+    file:
+      - name: "drugs.csv"
+    column:
+      - name: "atccode"
+        type: "str"
+      - name: "drug"
+        type: "str"
+  - source: "pubmed"
+    file:
+      - name: "pubmed.csv"
+      - name: "pubmed.json"
+    column:
+        - name: "id"
+          type: "str"
+        - name: "title"
+          type: "str"
+        - name: "date"
+          type: "date"
+        - name: "journal"
+          type: "str"
+  - source: "clinical_trials"
+    file:
+      - name: "clinical_trials.csv"
+    column:
+        - name: "id"
+          type: "str"
+        - name: "scientific_title"
+          correct_name: "title"
+          type: "str"
+        - name: "date"
+          type: "date"
+        - name: "journal"
+          type: "str"
