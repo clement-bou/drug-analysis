@@ -6,7 +6,7 @@
 ### Solution proposée
 `À propos:`
 La solution proposé se découpe par taches de type `Task` placés dans une liste. Chaque taches est appelée à la chaine à l'image d'une pipeline.
-Toutes les taches prennnent en entrée le résultat de la tache précédente, puis une terminé elle renvoie le résultat de son propre traitement.
+Toutes les taches prennnent en entrée le résultat de la tache précédente, puis une fois terminé elle renvoie le résultat de son propre traitement. Le choix d'impléter chaque étapes sous forme de taches permet d'avoir un code modulable et réuitilisable pour d'autres besoins.
 
 L'ensemble des paramètres du projet (path et format) sont stockés dans `config/config.yaml` afin que chacun puisse avoir
 les infos clés du projet facilement.
@@ -36,8 +36,6 @@ Ad-hoc
 python3 ./ad-hoc.py
 ```
 
-Le dossier test contient un script de test executable depuis la racine du projet avec `pytest
-
 `Architecture:`
 ```
 .
@@ -47,9 +45,9 @@ Le dossier test contient un script de test executable depuis la racine du projet
     /data : contient les données à partir de la source jusqu'au graph de laison final
     /src:
         /task : Ensemble de classes qui von être appelé dans la pipeline. Ils héritent tous de la classe Task (abstract class) pour avoir un format uniforme
-        /tools : Diver outils utilisé communémant dans les tasks
+        /tools : Diver outils utilisés communémant dans les tasks
     /test:
-        /sample: exmeple de data utiles pour les tests
+        /sample: exemple de data utiles pour les tests
         /script: dossier qui contient les scripts de test
     
     pipeline_main.py : fichier à executer depuis la racine du projet pour lancer le process
@@ -58,12 +56,12 @@ Le dossier test contient un script de test executable depuis la racine du projet
         
 ```
 
-`Piste:`
+`Pistes:`
 - Changer le format du stockage des données par un système de stockage plus performant (S3, HDFS, MongoDB,...)
 - Approfondir les tests à l'ensemble des class du projet
 - Mettre en place un système d'exception personnalisé
 - Containerisé la solution
-- Dans un cas plutôt real-time, placer chaque tache dans worker relié à une fil d'attente de message (Kakfa, RabbitMQ)
+- Dans un cas plutôt real-time, placer chaque tache dans un worker relié à une fil d'attente de message (Kakfa, RabbitMQ)
 
 
 ## Partie 2 - SQL
